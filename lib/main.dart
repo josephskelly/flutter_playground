@@ -9,7 +9,8 @@ import 'package:flutter_playground/RandomWords.dart';
 
 void main() => runApp(CounterApp());
 
-class MyApp extends StatelessWidget {
+///Generates random names by compounding two words.
+class RandomWordsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+///A simple button that keeps track of how many times it has been pressed.
 class CounterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
