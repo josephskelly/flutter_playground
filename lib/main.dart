@@ -4,9 +4,10 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/Counter.dart';
 import 'package:flutter_playground/RandomWords.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(CounterApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -21,3 +22,14 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class CounterApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoApp(
+      title: 'Cupertino Counter',
+      home: Counter(),
+    );
+  }
+}
+
