@@ -111,30 +111,3 @@ class ProjectDetailsScreen extends StatelessWidget {
     );
   }
 }
-
-// ///Generates random names by compounding two words.
-// class RandomWordsApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Startup Name Generator',
-//       theme: ThemeData(
-//         primaryColor: Colors.white,
-//       ),
-//       home: HomePage(),
-//     );
-//   }
-// }
-//
-// ///A simple button that keeps track of how many times it has been pressed.
-// class CounterApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return CupertinoApp(
-//       title: 'Cupertino Counter',
-//       home: Counter(),
-//     );
-//   }
-// }
-//
