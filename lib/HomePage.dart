@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/main.dart';
+import 'package:flutter_playground/Project.dart';
 
 class HomePage extends StatelessWidget {
   final List<Project> projects;

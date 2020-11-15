@@ -5,15 +5,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/HomePage.dart';
+import 'package:flutter_playground/RandomWords.dart';
+import 'package:flutter_playground/Counter.dart';
+import 'package:flutter_playground/Project.dart';
 
 void main() => runApp(Playground());
-
-class Project {
-  final String title;
-  final String description;
-
-  Project(this.title, this.description);
-}
 
 class Playground extends StatefulWidget {
   @override
@@ -28,9 +24,26 @@ class _PlaygroundState extends State<Playground> {
   Project _selectedProject;
   bool show404 = false;
   List<Project> projects = [
-    Project('Startup Name Generator',
-        'Creates random names by combining random words'),
-    Project('Counter', 'Keeps track of how many times a button was pressed'),
+    Project(
+      'Startup Name Generator',
+      'Creates random names by combining random words',
+      RandomWords(),
+      IconButton(
+        icon: Icon(Icons.list),
+        // onPressed: ,
+      ),
+    ),
+    Project(
+      'Counter',
+      'Keeps track of how many times a button was pressed',
+      Counter(),
+      Flex(
+        direction: Axis.horizontal,
+      ),
+      // IconButton(
+      //   icon: Icon(Icons.baby_changing_station),
+      // ),
+    ),
   ];
 
   @override
@@ -55,6 +68,11 @@ class _PlaygroundState extends State<Playground> {
               key: ValueKey('UnknownPage'),
               child: UnknownScreen(),
             )
+          // else if (_selectedProject == projects[0]) // Startup Name Generator
+          //   MaterialPage(
+          //     key: ValueKey(_selectedProject),
+          //     child: _selectedProject.builder,
+          //   )
           else if (_selectedProject != null)
             MaterialPage(
               key: ValueKey(_selectedProject),
@@ -106,8 +124,11 @@ class ProjectDetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(project.title),
+        actions: [
+          project.action,
+        ],
       ),
-      body: Text(project.description),
+      body: project.builder,
     );
   }
 }
