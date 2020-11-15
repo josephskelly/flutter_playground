@@ -66,7 +66,7 @@ class _PlaygroundState extends State<Playground> {
             return false;
           }
 
-          // Update the list of pages by setting _selectedBook to null
+          // Update the list of pages by setting _selectedProject to null
           setState(() {
             _selectedProject = null;
           });
