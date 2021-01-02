@@ -1,4 +1,4 @@
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,47 +18,25 @@ class RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blue,
-        child: Container(height: 50, color: Colors.white  ,),
-        // child: BottomNavigationBar(
-        //   items: [
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.cancel),
-        //       title: Text("Cancel"),
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.cancel),
-        //       title: Text("Cancel"),
-        //     ),
-        //   ],
-        //   backgroundColor: Colors.blue,
-        // ),
-        notchMargin:5,
+        color: Colors.white,
+        child: Container(
+          height: 50,
+          color: Colors.white,
+        ),
+        notchMargin: 5,
         shape: CircularNotchedRectangle(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           pushSaved();
         },
-        child: Icon(Icons.favorite, color: Colors.red,),
+        child: Icon(
+          Icons.favorite,
+          color: Colors.red,
+        ),
         backgroundColor: Colors.white,
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     pushSaved();
-      //     // Add your onPressed code here!
-      //   },
-      //   // label: Text('Favorites', style: TextStyle(color: Colors.black)),
-      //   // icon: Icon(Icons.favorite, color: Colors.black,),
-      //   backgroundColor: Colors.white,
-      // ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // appBar: AppBar(
-      //   title: Text('Startup Name Generator'),
-      //   actions: [
-      //     IconButton(icon: Icon(Icons.list), onPressed: pushSaved),
-      //   ],
-      // ),
       body: _buildSuggestions(),
     );
   }
