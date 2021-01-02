@@ -28,12 +28,8 @@ class _PlaygroundState extends State<Playground> {
       'Startup Name Generator',
       'Creates random names by combining random words',
       RandomWords(),
-      IconButton(
-        icon: Icon(Icons.list),
-        // onPressed: MaterialPage(
-        //   key: ValueKey('test'),
-        //   child:
-        // ),
+      Flex(
+          direction: Axis.horizontal,
       ),
     ),
     Project(
@@ -76,11 +72,12 @@ class _PlaygroundState extends State<Playground> {
           //     key: ValueKey(_selectedProject),
           //     child: _selectedProject.builder,
           //   )
-          else if (_selectedProject != null)
-            MaterialPage(
-              key: ValueKey(_selectedProject),
-              child: ProjectDetailsScreen(project: _selectedProject),
-            )
+          else
+            if (_selectedProject != null)
+              MaterialPage(
+                key: ValueKey(_selectedProject),
+                child: ProjectDetailsScreen(project: _selectedProject),
+              )
         ],
         onPopPage: (route, result) {
           if (!route.didPop(result)) {
@@ -99,9 +96,9 @@ class _PlaygroundState extends State<Playground> {
   }
 
   void _handleProjectTapped(Project project) {
-    setState(() {
-      _selectedProject = project;
-    });
+      setState(() {
+        _selectedProject = project;
+      });
   }
 }
 

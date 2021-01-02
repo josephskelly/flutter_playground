@@ -1,13 +1,15 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
 class RandomWords extends StatefulWidget {
   @override
-  _RandomWordsState createState() => _RandomWordsState();
+  RandomWordsState createState() => RandomWordsState();
 }
 
-class _RandomWordsState extends State<RandomWords> {
+class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _saved = Set<WordPair>();
   final _biggerFont = TextStyle(fontSize: 18.0);
@@ -15,12 +17,48 @@ class _RandomWordsState extends State<RandomWords> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Startup Name Generator'),
-        actions: [
-          IconButton(icon: Icon(Icons.list), onPressed: pushSaved),
-        ],
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue,
+        child: Container(height: 50, color: Colors.white  ,),
+        // child: BottomNavigationBar(
+        //   items: [
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.cancel),
+        //       title: Text("Cancel"),
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.cancel),
+        //       title: Text("Cancel"),
+        //     ),
+        //   ],
+        //   backgroundColor: Colors.blue,
+        // ),
+        notchMargin:5,
+        shape: CircularNotchedRectangle(),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          pushSaved();
+        },
+        child: Icon(Icons.favorite, color: Colors.red,),
+        backgroundColor: Colors.white,
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     pushSaved();
+      //     // Add your onPressed code here!
+      //   },
+      //   // label: Text('Favorites', style: TextStyle(color: Colors.black)),
+      //   // icon: Icon(Icons.favorite, color: Colors.black,),
+      //   backgroundColor: Colors.white,
+      // ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // appBar: AppBar(
+      //   title: Text('Startup Name Generator'),
+      //   actions: [
+      //     IconButton(icon: Icon(Icons.list), onPressed: pushSaved),
+      //   ],
+      // ),
       body: _buildSuggestions(),
     );
   }
