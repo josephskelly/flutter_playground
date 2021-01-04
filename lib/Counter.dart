@@ -32,7 +32,7 @@ class _CounterState extends State<Counter> {
           label: Text('Click me'),
           icon: Icon(Icons.add)),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButtonAnimator: ,
+      // floatingActionButtonAnimator: ,
       body: Center(
         child: Text('Count: $_counter'),
         heightFactor: 37,

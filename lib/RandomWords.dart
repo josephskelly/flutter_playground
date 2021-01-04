@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'package:superellipse_shape/superellipse_shape.dart';
 
 class RandomWords extends StatefulWidget {
   @override
@@ -18,21 +19,25 @@ class RandomWordsState extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
+        // color: Colors.white,
         child: Container(
           height: 50,
           color: Colors.white,
         ),
-        notchMargin: 5,
+        // notchMargin: 20,
         shape: CircularNotchedRectangle(),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           pushSaved();
         },
-        child: Icon(
+        icon: Icon(
           Icons.favorite,
           color: Colors.red,
+        ),
+        label: Text(
+          'Favorites',
+          style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.white,
       ),

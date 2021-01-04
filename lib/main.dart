@@ -9,6 +9,7 @@ import 'package:flutter_playground/RandomWords.dart';
 import 'package:flutter_playground/Counter.dart';
 import 'package:flutter_playground/Project.dart';
 
+import 'SignIn.dart';
 
 // TODO: Add Navigation 2.0
 
@@ -32,7 +33,7 @@ class _PlaygroundState extends State<Playground> {
       'Creates random names by combining random words',
       RandomWords(),
       Flex(
-          direction: Axis.horizontal,
+        direction: Axis.horizontal,
       ),
     ),
     Project(
@@ -42,10 +43,14 @@ class _PlaygroundState extends State<Playground> {
       Flex(
         direction: Axis.horizontal,
       ),
-      // IconButton(
-      //   icon: Icon(Icons.baby_changing_station),
-      // ),
     ),
+    Project(
+        'Sign In',
+        'An example sign in page',
+        SignIn(),
+        Flex(
+          direction: Axis.horizontal,
+        ))
   ];
 
   @override
@@ -75,12 +80,11 @@ class _PlaygroundState extends State<Playground> {
           //     key: ValueKey(_selectedProject),
           //     child: _selectedProject.builder,
           //   )
-          else
-            if (_selectedProject != null)
-              MaterialPage(
-                key: ValueKey(_selectedProject),
-                child: ProjectDetailsScreen(project: _selectedProject),
-              )
+          else if (_selectedProject != null)
+            MaterialPage(
+              key: ValueKey(_selectedProject),
+              child: ProjectDetailsScreen(project: _selectedProject),
+            )
         ],
         onPopPage: (route, result) {
           if (!route.didPop(result)) {
@@ -99,9 +103,9 @@ class _PlaygroundState extends State<Playground> {
   }
 
   void _handleProjectTapped(Project project) {
-      setState(() {
-        _selectedProject = project;
-      });
+    setState(() {
+      _selectedProject = project;
+    });
   }
 }
 
