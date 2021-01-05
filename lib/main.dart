@@ -8,7 +8,7 @@ import 'package:flutter_playground/HomePage.dart';
 import 'package:flutter_playground/RandomWords.dart';
 import 'package:flutter_playground/Counter.dart';
 import 'package:flutter_playground/Project.dart';
-
+import 'package:auto_route/auto_route.dart';
 import 'SignIn.dart';
 
 // TODO: Add Navigation 2.0
@@ -108,6 +108,9 @@ class _PlaygroundState extends State<Playground> {
     });
   }
 }
+
+@MaterialAutoRouter()
+class $AppRouter {}
 
 class UnknownScreen extends StatelessWidget {
   @override
