@@ -26,7 +26,7 @@ class ProjectListScreen extends StatelessWidget {
             ListTile(
               title: Text(project.title),
               subtitle: Text(project.description),
-              onTap: () => context.router.push(RandomWordsRoute()),
+              onTap: () => context.router.push(project.route),
             ),
         ],
       ),

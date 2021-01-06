@@ -3,6 +3,7 @@ import 'Project.dart';
 import 'RandomWords.dart';
 import 'Counter.dart';
 import 'SignIn.dart';
+import 'Router.gr.dart';
 
 final List<Project> ProjectList = [
   Project(
@@ -12,6 +13,7 @@ final List<Project> ProjectList = [
     Flex(
       direction: Axis.horizontal,
     ),
+    RandomWordsRoute(),
   ),
   Project(
     'Counter',
@@ -20,12 +22,15 @@ final List<Project> ProjectList = [
     Flex(
       direction: Axis.horizontal,
     ),
+    CounterRoute(),
   ),
   Project(
-      'Sign In',
-      'An example sign in page',
-      SignIn(),
-      Flex(
-        direction: Axis.horizontal,
-      ))
+    'Sign In',
+    'An example sign in page',
+    SignIn(),
+    Flex(
+      direction: Axis.horizontal,
+    ),
+    SignInRoute(),
+  ),
 ];
