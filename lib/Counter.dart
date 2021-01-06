@@ -25,6 +25,9 @@ class _CounterState extends State<Counter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Counter'),
+      ),
       bottomNavigationBar: BottomAppBar(),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: _increment,

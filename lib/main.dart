@@ -23,10 +23,26 @@ class _PlaygroundState extends State<Playground> {
   }
 
   final _appRouter = AppRouter();
+  final ThemeData light = ThemeData.light();
+  final ThemeData dark = ThemeData.dark();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: light.copyWith(
+        primaryColor: Colors.white,
+        accentColor: Colors.grey[400],
+        textTheme: TextTheme(
+          headline4: TextStyle(
+            color: Colors.black,
+          ),
+        ),
+      ),
+      darkTheme: dark.copyWith(
+          textTheme: TextTheme(
+              headline4: TextStyle(
+        color: Colors.white,
+      ))),
       title: 'Flutter Playground',
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),

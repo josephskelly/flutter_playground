@@ -11,7 +11,6 @@ import 'SignIn.dart';
     AutoRoute(page: RandomWords),
     AutoRoute(page: Counter),
     AutoRoute(page: SignIn),
-    // AutoRoute(page: ProjectDetailsScreen),
   ],
 )
 class $AppRouter {}

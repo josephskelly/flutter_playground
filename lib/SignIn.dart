@@ -5,7 +5,7 @@ class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.grey[200],
+      color: Theme.of(context).primaryColor,
       child: Center(
         child: SizedBox(
           width: 400,
@@ -31,52 +31,64 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          LinearProgressIndicator(),
-          Text('Sign Up', style: Theme.of(context).textTheme.headline4),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              controller: _firstNameTextController,
-              decoration: InputDecoration(hintText: 'First name'),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black, width: 1),
+        borderRadius: BorderRadius.circular(1),
+        // boxShadow: [
+        //   BoxShadow(color: Colors.grey[800], blurRadius: 5, spreadRadius: 5),
+        // ],
+      ),
+      child: Form(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            LinearProgressIndicator(),
+            Text(
+              'Sign Up',
+              style: Theme.of(context).textTheme.headline4,
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              controller: _lastNameTextController,
-              decoration: InputDecoration(hintText: 'Last name'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: _firstNameTextController,
+                decoration: InputDecoration(hintText: 'First name'),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              controller: _usernameTextController,
-              decoration: InputDecoration(hintText: 'Username'),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: _lastNameTextController,
+                decoration: InputDecoration(hintText: 'Last name'),
+              ),
             ),
-          ),
-          TextButton(
-            style: ButtonStyle(
-              foregroundColor:
-                  MaterialStateColor.resolveWith((Set<MaterialState> states) {
-                return states.contains(MaterialState.disabled)
-                    ? null
-                    : Colors.white;
-              }),
-              backgroundColor:
-                  MaterialStateColor.resolveWith((Set<MaterialState> states) {
-                return states.contains(MaterialState.disabled)
-                    ? null
-                    : Colors.blue;
-              }),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: _usernameTextController,
+                decoration: InputDecoration(hintText: 'Username'),
+              ),
             ),
-            onPressed: null,
-            child: Text('Sign Up'),
-          ),
-        ],
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor:
+                    MaterialStateColor.resolveWith((Set<MaterialState> states) {
+                  return states.contains(MaterialState.disabled)
+                      ? null
+                      : Colors.white;
+                }),
+                backgroundColor:
+                    MaterialStateColor.resolveWith((Set<MaterialState> states) {
+                  return states.contains(MaterialState.disabled)
+                      ? null
+                      : Colors.blue;
+                }),
+              ),
+              onPressed: null,
+              child: Text('Sign Up'),
+            ),
+          ],
+        ),
       ),
     );
   }
