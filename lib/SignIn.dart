@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 class SignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Theme.of(context).primaryColor,
-      child: Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sign Up'),
+      ),
+      // color: Theme.of(context).primaryColor,
+      body: Center(
         child: SizedBox(
           width: 400,
           child: Card(

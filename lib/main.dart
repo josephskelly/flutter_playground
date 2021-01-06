@@ -23,49 +23,52 @@ class _PlaygroundState extends State<Playground> {
   }
 
   final _appRouter = AppRouter();
-  final ThemeData light = ThemeData.light();
-  final ThemeData dark = ThemeData.dark();
+  final ThemeData light = ThemeData.light().copyWith(
+    primaryColor: Colors.white,
+    accentColor: Colors.grey[400],
+    textTheme: TextTheme(
+      headline4: TextStyle(
+        color: Colors.black,
+      ),
+    ),
+  );
+  final ThemeData dark = ThemeData.dark().copyWith(
+    accentColor: Colors.grey[800],
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      foregroundColor: Colors.white,
+      backgroundColor: Colors.grey[800],
+    ),
+    textTheme: TextTheme(
+      bodyText1: TextStyle(
+        color: Colors.white,
+      ),
+      bodyText2: TextStyle(
+        color: Colors.white,
+      ),
+      headline4: TextStyle(
+        color: Colors.white,
+      ),
+      headline5: TextStyle(
+        color: Colors.white,
+      ),
+      headline6: TextStyle(
+        color: Colors.white,
+      ),
+      subtitle1: TextStyle(
+        color: Colors.white,
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: light.copyWith(
-        primaryColor: Colors.white,
-        accentColor: Colors.grey[400],
-        textTheme: TextTheme(
-          headline4: TextStyle(
-            color: Colors.black,
-          ),
-        ),
-      ),
-      darkTheme: dark.copyWith(
-          textTheme: TextTheme(
-              headline4: TextStyle(
-        color: Colors.white,
-      ))),
+      debugShowCheckedModeBanner: false,
+      theme: light,
+      darkTheme: dark,
       title: 'Flutter Playground',
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),
     );
   }
 }
-
-// class ProjectDetailsScreen extends StatelessWidget {
-//   final Project project;
-//   ProjectDetailsScreen({
-//     @required this.project,
-//   });
-//   @override
-//
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(project.title),
-//         actions: [
-//           project.action,
-//         ],
-//       ),
-//       body: project.builder,
-//     );
-//   }
-// }

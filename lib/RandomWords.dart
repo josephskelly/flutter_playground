@@ -24,10 +24,10 @@ class RandomWordsState extends State<RandomWords> {
         // color: Colors.white,
         child: Container(
           height: 50,
-          color: Colors.white,
+          color: Theme.of(context).primaryColor,
         ),
         // notchMargin: 20,
-        shape: CircularNotchedRectangle(),
+        // shape: CircularNotchedRectangle(),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
@@ -39,9 +39,7 @@ class RandomWordsState extends State<RandomWords> {
         ),
         label: Text(
           'Favorites',
-          style: TextStyle(color: Colors.black),
         ),
-        backgroundColor: Colors.white,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: _buildSuggestions(),
