@@ -6,10 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/Router.gr.dart';
 
-// TODO: Add Navigation 2.0
-// Added with auto route. but not complete.
-//  TODO: Add routes to all projects.
-
 void main() => runApp(Playground());
 
 class Playground extends StatefulWidget {
@@ -27,36 +23,22 @@ class _PlaygroundState extends State<Playground> {
     primaryColor: Colors.white,
     accentColor: Colors.grey[400],
     textTheme: TextTheme(
-      headline4: TextStyle(
-        color: Colors.black,
-      ),
+      headline4: TextStyle(color: Colors.black),
     ),
   );
   final ThemeData dark = ThemeData.dark().copyWith(
-    accentColor: Colors.grey[800],
+    accentColor: Colors.grey[400],
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       foregroundColor: Colors.white,
       backgroundColor: Colors.grey[800],
     ),
     textTheme: TextTheme(
-      bodyText1: TextStyle(
-        color: Colors.white,
-      ),
-      bodyText2: TextStyle(
-        color: Colors.white,
-      ),
-      headline4: TextStyle(
-        color: Colors.white,
-      ),
-      headline5: TextStyle(
-        color: Colors.white,
-      ),
-      headline6: TextStyle(
-        color: Colors.white,
-      ),
-      subtitle1: TextStyle(
-        color: Colors.white,
-      ),
+      bodyText1: TextStyle(color: Colors.white),
+      bodyText2: TextStyle(color: Colors.white),
+      headline4: TextStyle(color: Colors.white),
+      headline5: TextStyle(color: Colors.white),
+      headline6: TextStyle(color: Colors.white),
+      subtitle1: TextStyle(color: Colors.white),
     ),
   );
 
