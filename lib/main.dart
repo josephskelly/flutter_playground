@@ -4,7 +4,9 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/AppState.dart';
 import 'package:flutter_playground/Router.gr.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(Playground());
 
@@ -44,13 +46,18 @@ class _PlaygroundState extends State<Playground> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      theme: light,
-      darkTheme: dark,
-      title: 'Flutter Playground',
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
+    return MultiProvider(
+      providers: [
+        Provider(create: (context) => AppState()),
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        theme: light,
+        darkTheme: dark,
+        title: 'Flutter Playground',
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
+      ),
     );
   }
 }
