@@ -12,12 +12,11 @@ class RandomWords extends StatefulWidget {
 }
 
 class RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
   final _biggerFont = TextStyle(fontSize: 18.0);
 
   @override
   Widget build(BuildContext context) {
-    var _saved = context.watch<AppState>();
+    var _suggestions = context.watch<AppState>();
     return Scaffold(
       appBar: AppBar(
         title: Text('Startup Name Generator'),
@@ -28,8 +27,6 @@ class RandomWordsState extends State<RandomWords> {
           height: 50,
           color: Theme.of(context).primaryColor,
         ),
-        // notchMargin: 20,
-        // shape: CircularNotchedRectangle(),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
@@ -49,6 +46,7 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildSuggestions() {
+    var _suggestions = context.watch<AppState>().suggestions;
     return ListView.builder(
       padding: EdgeInsets.all(16.0),
       itemBuilder: (context, i) {
@@ -57,30 +55,33 @@ class RandomWordsState extends State<RandomWords> {
         if (index >= _suggestions.length) {
           _suggestions.addAll(generateWordPairs().take(10));
         }
-        return _buildRow(_suggestions[index]);
+        return Consumer<AppState>(
+          builder: (context, foo, child) => _buildRow(_suggestions[index]),
+        );
       },
     );
   }
 
   Widget _buildRow(WordPair pair) {
-    var saved = context.read<AppState>();
-    // final _savedSuggestions =
-    //     Provider.of<AppState>(context, listen: false).savedSuggestions;
-    final alreadySaved = saved.savedSuggestions.contains(pair);
+    var favoriteList = Provider.of<AppState>(context, listen: true);
+    final isFavorite =
+        Provider.of<AppState>(context, listen: true).isFavorite(pair);
     return ListTile(
       title: Text(
         pair.asPascalCase,
         style: _biggerFont,
       ),
-      trailing: Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
+      trailing: Consumer<AppState>(
+        builder: (context, wordPair, child) => Icon(
+          wordPair.isFavorite(pair) ? Icons.favorite : Icons.favorite_border,
+          color: wordPair.isFavorite(pair) ? Colors.red : null,
+        ),
       ),
       onTap: () {
-        if (alreadySaved) {
-          saved.removeSuggestion(pair);
+        if (isFavorite) {
+          favoriteList.removeSuggestion(pair);
         } else {
-          saved.addSuggestion(pair);
+          favoriteList.addSuggestion(pair);
         }
       },
     );
@@ -108,7 +109,7 @@ class RandomWordsState extends State<RandomWords> {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
-          var saved = context.watch<AppState>();
+          var saved = Provider.of<AppState>(context, listen: true);
           final tiles = saved.savedSuggestions.map(
             (WordPair pair) {
               return ListTile(
