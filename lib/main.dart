@@ -11,8 +11,12 @@ import 'package:provider/provider.dart';
 // TODO: Add persistent data storage
 
 void main() => runApp(
-      ChangeNotifierProvider(
-        create: (context) => AppState(),
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => AppState(),
+          ),
+        ],
         child: Playground(),
       ),
     );
@@ -24,14 +28,19 @@ class Playground extends StatefulWidget {
 
 class _PlaygroundState extends State<Playground> {
   final _appRouter = AppRouter();
+
+  //MARK: Light Theme
   final ThemeData light = ThemeData(
-      colorScheme: ColorScheme.light(),
-      primaryColor: Colors.white,
-      accentColor: Colors.white,
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: Colors.grey[200],
-        foregroundColor: Colors.black,
-      ));
+    colorScheme: ColorScheme.light(),
+    primaryColor: Colors.white,
+    accentColor: Colors.white,
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Colors.grey[200],
+      foregroundColor: Colors.black,
+    ),
+  );
+
+  // MARK: Dark Theme
   final ThemeData dark = ThemeData(
     colorScheme: ColorScheme.dark(),
     // primaryColor: Colors.grey[800],
@@ -46,8 +55,6 @@ class _PlaygroundState extends State<Playground> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-
-      /// Light Theme
       theme: light,
       darkTheme: dark,
       title: 'Flutter Playground',
