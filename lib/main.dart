@@ -12,8 +12,12 @@ import 'package:provider/provider.dart';
 
 void main() => runApp(
       MultiProvider(
+        // MARK: Providers
         providers: [
+          // Use ChangeNotifierProvider to update UI.
+          // Use Provider to update model only.
           ChangeNotifierProvider(
+            // TODO: Separate AppState into specialized providers.
             create: (context) => AppState(),
           ),
         ],
@@ -27,10 +31,13 @@ class Playground extends StatefulWidget {
 }
 
 class _PlaygroundState extends State<Playground> {
+  // MARK: Router
   final _appRouter = AppRouter();
 
-  //MARK: Light Theme
+  // MARK: Light Theme
   final ThemeData light = ThemeData(
+    // Use colorScheme instead of ThemeData...copyWith() to avoid
+    //  resetting to default values.
     colorScheme: ColorScheme.light(),
     primaryColor: Colors.white,
     accentColor: Colors.white,
@@ -42,9 +49,9 @@ class _PlaygroundState extends State<Playground> {
 
   // MARK: Dark Theme
   final ThemeData dark = ThemeData(
+    // Use colorScheme instead of ThemeData...copyWith() to avoid
+    //  resetting to default values.
     colorScheme: ColorScheme.dark(),
-    // primaryColor: Colors.grey[800],
-    // accentColor: Colors.grey,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.grey[800],
       foregroundColor: Colors.white,
