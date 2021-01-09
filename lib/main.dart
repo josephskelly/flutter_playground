@@ -25,6 +25,7 @@ void main() => runApp(
       ),
     );
 
+// TODO: Confirm if StatefulWidget is still necessary after using provider.
 class Playground extends StatefulWidget {
   @override
   _PlaygroundState createState() => _PlaygroundState();

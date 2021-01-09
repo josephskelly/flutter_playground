@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-///Is this how you document in dart?
+// TODO: Add something fun for counter challenge.
+
 class Counter extends StatefulWidget {
   @override
   _CounterState createState() => _CounterState();
 }
 
-///Or maybe like this?
 class _CounterState extends State<Counter> {
   int _counter = 0;
 
@@ -16,6 +16,7 @@ class _CounterState extends State<Counter> {
     });
   }
 
+  // TODO: Implement this somewhere. a button, maybe?
   void _decrement() {
     setState(() {
       _counter--;

@@ -30,6 +30,9 @@ class AppRouter extends _i1.RootStackRouter {
     },
     SignInRoute.name: (entry) {
       return _i1.AdaptivePage(entry: entry, child: _i5.SignIn());
+    },
+    FavoritesRoute.name: (entry) {
+      return _i1.AdaptivePage(entry: entry, child: _i3.Favorites());
     }
   };
 
@@ -46,7 +49,10 @@ class AppRouter extends _i1.RootStackRouter {
             routeBuilder: (match) => CounterRoute.fromMatch(match)),
         _i1.RouteConfig<SignInRoute>(SignInRoute.name,
             path: '/sign-in',
-            routeBuilder: (match) => SignInRoute.fromMatch(match))
+            routeBuilder: (match) => SignInRoute.fromMatch(match)),
+        _i1.RouteConfig<FavoritesRoute>(FavoritesRoute.name,
+            path: '/random-words/favorites',
+            routeBuilder: (match) => FavoritesRoute.fromMatch(match))
       ];
 }
 
@@ -85,4 +91,12 @@ class SignInRoute extends _i1.PageRouteInfo {
   SignInRoute.fromMatch(_i1.RouteMatch match) : super.fromMatch(match);
 
   static const String name = 'SignInRoute';
+}
+
+class FavoritesRoute extends _i1.PageRouteInfo {
+  const FavoritesRoute() : super(name, path: '/random-words/favorites');
+
+  FavoritesRoute.fromMatch(_i1.RouteMatch match) : super.fromMatch(match);
+
+  static const String name = 'FavoritesRoute';
 }

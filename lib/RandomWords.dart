@@ -5,6 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_playground/AppState.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_playground/Router.gr.dart';
+
+// TODO: add a button to reset view and build a new list of suggestions.
+// TODO: Add a button to remove items from favorites list
+// TODO: Create a more consistent naming scheme for this project.
+// TODO: CHeck for redundant rebuilds of widgets. There may be too many changenotifierproviders watching data.
+
+final _biggerFont = TextStyle(fontSize: 18.0);
 
 class RandomWords extends StatefulWidget {
   @override
@@ -12,8 +21,6 @@ class RandomWords extends StatefulWidget {
 }
 
 class RandomWordsState extends State<RandomWords> {
-  final _biggerFont = TextStyle(fontSize: 18.0);
-
   @override
   Widget build(BuildContext context) {
     var _suggestions = context.watch<AppState>();
@@ -30,7 +37,7 @@ class RandomWordsState extends State<RandomWords> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          pushSaved();
+          context.router.push(FavoritesRoute());
         },
         icon: Icon(
           Icons.favorite,
@@ -41,11 +48,15 @@ class RandomWordsState extends State<RandomWords> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: _buildSuggestions(),
+      body: Suggestions(),
     );
   }
+}
 
-  Widget _buildSuggestions() {
+// TODO: Rebuild as separate class with its own build method.
+class Suggestions extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     var _suggestions = context.watch<AppState>().suggestions;
     return ListView.builder(
       padding: EdgeInsets.all(16.0),
@@ -55,89 +66,64 @@ class RandomWordsState extends State<RandomWords> {
         if (index >= _suggestions.length) {
           _suggestions.addAll(generateWordPairs().take(10));
         }
-        return Consumer<AppState>(
-          builder: (context, foo, child) => _buildRow(_suggestions[index]),
-        );
+        // TODO: Change to a simple context.watch/read();
+        return Row(_suggestions[index]);
       },
     );
   }
+}
 
-  Widget _buildRow(WordPair pair) {
-    var favoriteList = Provider.of<AppState>(context, listen: true);
-    final isFavorite =
-        Provider.of<AppState>(context, listen: true).isFavorite(pair);
+class Row extends StatelessWidget {
+  final WordPair suggestion;
+
+  Row(
+    this.suggestion,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    var favoriteList = context.watch<AppState>();
+    final isFavorite = context.watch<AppState>().isFavorite(suggestion);
     return ListTile(
       title: Text(
-        pair.asPascalCase,
+        suggestion.asPascalCase,
         style: _biggerFont,
       ),
-      trailing: Consumer<AppState>(
-        builder: (context, wordPair, child) => Icon(
-          wordPair.isFavorite(pair) ? Icons.favorite : Icons.favorite_border,
-          color: wordPair.isFavorite(pair) ? Colors.red : null,
-        ),
+      trailing: Icon(
+        isFavorite ? Icons.favorite : Icons.favorite_border,
+        color: isFavorite ? Colors.red : null,
       ),
       onTap: () {
         if (isFavorite) {
-          favoriteList.removeSuggestion(pair);
+          favoriteList.removeSuggestion(suggestion);
         } else {
-          favoriteList.addSuggestion(pair);
+          favoriteList.addSuggestion(suggestion);
         }
       },
     );
   }
+}
 
-  // var cart = context.watch<CartModel>();
-  //
-  // return ListView.builder(
-  // itemCount: cart.items.length,
-  // itemBuilder: (context, index) => ListTile(
-  // leading: Icon(Icons.done),
-  // trailing: IconButton(
-  // icon: Icon(Icons.remove_circle_outline),
-  // onPressed: () {
-  // cart.remove(cart.items[index]);
-  // },
-  // ),
-  // title: Text(
-  // cart.items[index].name,
-  // style: itemNameStyle,
-  // ),
-  // ),
-  // );
-  void pushSaved() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          var saved = Provider.of<AppState>(context, listen: true);
-          final tiles = saved.savedSuggestions.map(
-            (WordPair pair) {
-              return ListTile(
-                title: Text(pair.asPascalCase, style: _biggerFont),
-              );
-            },
-          );
-
-          // return ListView.builder(
-          //   itemCount: saved.savedSuggestions.length,
-          //   itemBuilder: (context, index) => ListTile(
-          //     trailing: IconButton(
-          //       icon: Icon(Icons.favorite),
-          //       onPressed: ,
-          //     ),
-          //   ),
-          final divided = ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList();
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Saved Suggestions'),
-            ),
-            body: ListView(children: divided),
-          );
-        },
+class Favorites extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var favorites = context.watch<AppState>().savedSuggestions;
+    final tiles = favorites.map(
+      (WordPair pair) {
+        return ListTile(
+          title: Text(pair.asPascalCase, style: _biggerFont),
+        );
+      },
+    );
+    final divided = ListTile.divideTiles(
+      context: context,
+      tiles: tiles,
+    ).toList();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Saved Suggestions'),
       ),
+      body: ListView(children: divided),
     );
   }
 }
