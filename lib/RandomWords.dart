@@ -11,7 +11,8 @@ import 'package:flutter_playground/Router.gr.dart';
 // TODO: add a button to reset view and build a new list of suggestions.
 // TODO: Add a button to remove items from favorites list
 // TODO: Create a more consistent naming scheme for this project.
-// TODO: CHeck for redundant rebuilds of widgets. There may be too many changenotifierproviders watching data.
+// TODO: CHeck for redundant rebuilds of widgets. There may be too many
+//  ChangeNotifierProviders watching data.
 
 final _biggerFont = TextStyle(fontSize: 18.0);
 
