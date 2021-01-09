@@ -5,6 +5,10 @@ import 'ProjectListScreen.dart';
 import 'RandomWords.dart';
 import 'SignIn.dart';
 
+// to rebuild Router.gr:
+// flutter packages pub run build_runner watch
+
+/// Creates page routes for given pages as PageRoute().
 @AdaptiveAutoRouter(
   routes: <AutoRoute>[
     // TODO: Give these pages more descriptive names.

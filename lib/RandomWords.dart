@@ -23,7 +23,7 @@ class RandomWords extends StatefulWidget {
 class RandomWordsState extends State<RandomWords> {
   @override
   Widget build(BuildContext context) {
-    var _suggestions = context.watch<AppState>();
+    // var _suggestions = context.watch<AppState>();
     return Scaffold(
       appBar: AppBar(
         title: Text('Startup Name Generator'),
@@ -53,16 +53,19 @@ class RandomWordsState extends State<RandomWords> {
   }
 }
 
-// TODO: Rebuild as separate class with its own build method.
+/// Builds a ListView of random [WordPair]s with dividers
 class Suggestions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    /// The list of random words paired together as a [WordPair].
     var _suggestions = context.watch<AppState>().suggestions;
     return ListView.builder(
       padding: EdgeInsets.all(16.0),
       itemBuilder: (context, i) {
+        // Adds divider between suggestions.
         if (i.isOdd) return Divider();
         final index = i ~/ 2;
+        // Generates [WordPair]s 10 at a time as user scrolls.
         if (index >= _suggestions.length) {
           _suggestions.addAll(generateWordPairs().take(10));
         }
@@ -73,6 +76,7 @@ class Suggestions extends StatelessWidget {
   }
 }
 
+/// A ListTile with a [WordPair] and trailing favorite icon.
 class Row extends StatelessWidget {
   final WordPair suggestion;
 
@@ -82,13 +86,15 @@ class Row extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var favoriteList = context.watch<AppState>();
+    final favoriteList = context.watch<AppState>();
     final isFavorite = context.watch<AppState>().isFavorite(suggestion);
     return ListTile(
+      // A WordPair.
       title: Text(
         suggestion.asPascalCase,
         style: _biggerFont,
       ),
+      // A favorite icon that is filled in if selected.
       trailing: Icon(
         isFavorite ? Icons.favorite : Icons.favorite_border,
         color: isFavorite ? Colors.red : null,
@@ -104,10 +110,13 @@ class Row extends StatelessWidget {
   }
 }
 
+/// A ListView of the user's favorite [WordPair]s.
 class Favorites extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var favorites = context.watch<AppState>().savedSuggestions;
+
+    /// Creates tiles from [favorites].
     final tiles = favorites.map(
       (WordPair pair) {
         return ListTile(
@@ -115,6 +124,8 @@ class Favorites extends StatelessWidget {
         );
       },
     );
+
+    /// Divides tiles.
     final divided = ListTile.divideTiles(
       context: context,
       tiles: tiles,
