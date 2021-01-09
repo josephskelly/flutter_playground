@@ -14,7 +14,7 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  isFavorite(WordPair wordPair) {
+  bool isFavorite(WordPair wordPair) {
     return savedSuggestions.contains(wordPair);
   }
 

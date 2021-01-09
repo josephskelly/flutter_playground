@@ -54,7 +54,7 @@ class RandomWordsState extends State<RandomWords> {
   }
 }
 
-/// Builds a ListView of random [WordPair]s with dividers
+/// Builds a ListView of random [WordPair]s with invisible dividers
 class Suggestions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -65,9 +65,10 @@ class Suggestions extends StatelessWidget {
       itemBuilder: (context, i) {
         // Adds divider between suggestions.
         if (i.isOdd) return Divider();
+        // Checks to see if there are enough suggestions to fill the view.
         final index = i ~/ 2;
-        // Generates [WordPair]s 10 at a time as user scrolls.
         if (index >= _suggestions.length) {
+          // Generates [WordPair]s 10 at a time as user scrolls.
           _suggestions.addAll(generateWordPairs().take(10));
         }
         // TODO: Change to a simple context.watch/read();
@@ -115,6 +116,7 @@ class Row extends StatelessWidget {
 class Favorites extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    /// The [WordPair] suggestions saved by the user.
     var favorites = context.watch<AppState>().savedSuggestions;
 
     /// Creates tiles from [favorites].
