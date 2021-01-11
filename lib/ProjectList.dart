@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/animated_transition/animated_transition_home.dart';
 import 'Project.dart';
 import 'RandomWords.dart';
 import 'Counter.dart';
@@ -32,5 +33,14 @@ final List<Project> ProjectList = [
       direction: Axis.horizontal,
     ),
     SignInRoute(),
+  ),
+  Project(
+    'Animated Transition',
+    'A custom animation for a page route',
+    AnimatedTransitionHome(),
+    Flex(
+      direction: Axis.horizontal,
+    ),
+    AnimatedTransitionHomeRoute(),
   ),
 ];

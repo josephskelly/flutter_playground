@@ -9,8 +9,10 @@ import 'ProjectListScreen.dart' as _i2;
 import 'RandomWords.dart' as _i3;
 import 'Counter.dart' as _i4;
 import 'SignIn.dart' as _i5;
-import 'package:flutter/material.dart' as _i6;
-import 'Project.dart' as _i7;
+import 'animated_transition/animated_transition_home.dart' as _i6;
+import 'animated_transition/animated_transition_destination.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
+import 'Project.dart' as _i9;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter();
@@ -25,14 +27,24 @@ class AppRouter extends _i1.RootStackRouter {
     RandomWordsRoute.name: (entry) {
       return _i1.AdaptivePage(entry: entry, child: _i3.RandomWords());
     },
+    FavoritesRoute.name: (entry) {
+      return _i1.AdaptivePage(entry: entry, child: _i3.Favorites());
+    },
     CounterRoute.name: (entry) {
       return _i1.AdaptivePage(entry: entry, child: _i4.Counter());
     },
     SignInRoute.name: (entry) {
       return _i1.AdaptivePage(entry: entry, child: _i5.SignIn());
     },
-    FavoritesRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i3.Favorites());
+    AnimatedTransitionHomeRoute.name: (entry) {
+      return _i1.AdaptivePage(
+          entry: entry, child: _i6.AnimatedTransitionHome());
+    },
+    AnimatedTransitionDestinationRoute.name: (entry) {
+      return _i1.CustomPage(
+          entry: entry,
+          child: _i7.AnimatedTransitionDestination(),
+          transitionsBuilder: _i1.TransitionsBuilders.fadeIn);
     }
   };
 
@@ -44,27 +56,37 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig<RandomWordsRoute>(RandomWordsRoute.name,
             path: '/random-words',
             routeBuilder: (match) => RandomWordsRoute.fromMatch(match)),
+        _i1.RouteConfig<FavoritesRoute>(FavoritesRoute.name,
+            path: '/random-words/favorites',
+            routeBuilder: (match) => FavoritesRoute.fromMatch(match)),
         _i1.RouteConfig<CounterRoute>(CounterRoute.name,
             path: '/Counter',
             routeBuilder: (match) => CounterRoute.fromMatch(match)),
         _i1.RouteConfig<SignInRoute>(SignInRoute.name,
             path: '/sign-in',
             routeBuilder: (match) => SignInRoute.fromMatch(match)),
-        _i1.RouteConfig<FavoritesRoute>(FavoritesRoute.name,
-            path: '/random-words/favorites',
-            routeBuilder: (match) => FavoritesRoute.fromMatch(match))
+        _i1.RouteConfig<AnimatedTransitionHomeRoute>(
+            AnimatedTransitionHomeRoute.name,
+            path: '/animated-transition-home',
+            routeBuilder: (match) =>
+                AnimatedTransitionHomeRoute.fromMatch(match)),
+        _i1.RouteConfig<AnimatedTransitionDestinationRoute>(
+            AnimatedTransitionDestinationRoute.name,
+            path: '/animated-transition-destination',
+            routeBuilder: (match) =>
+                AnimatedTransitionDestinationRoute.fromMatch(match))
       ];
 }
 
 class ProjectListScreenRoute extends _i1.PageRouteInfo {
-  ProjectListScreenRoute({@_i6.required this.onTapped})
+  ProjectListScreenRoute({@_i8.required this.onTapped})
       : super(name, path: '/');
 
   ProjectListScreenRoute.fromMatch(_i1.RouteMatch match)
       : onTapped = null,
         super.fromMatch(match);
 
-  final void Function(_i7.Project) onTapped;
+  final void Function(_i9.Project) onTapped;
 
   static const String name = 'ProjectListScreenRoute';
 }
@@ -75,6 +97,14 @@ class RandomWordsRoute extends _i1.PageRouteInfo {
   RandomWordsRoute.fromMatch(_i1.RouteMatch match) : super.fromMatch(match);
 
   static const String name = 'RandomWordsRoute';
+}
+
+class FavoritesRoute extends _i1.PageRouteInfo {
+  const FavoritesRoute() : super(name, path: '/random-words/favorites');
+
+  FavoritesRoute.fromMatch(_i1.RouteMatch match) : super.fromMatch(match);
+
+  static const String name = 'FavoritesRoute';
 }
 
 class CounterRoute extends _i1.PageRouteInfo {
@@ -93,10 +123,22 @@ class SignInRoute extends _i1.PageRouteInfo {
   static const String name = 'SignInRoute';
 }
 
-class FavoritesRoute extends _i1.PageRouteInfo {
-  const FavoritesRoute() : super(name, path: '/random-words/favorites');
+class AnimatedTransitionHomeRoute extends _i1.PageRouteInfo {
+  const AnimatedTransitionHomeRoute()
+      : super(name, path: '/animated-transition-home');
 
-  FavoritesRoute.fromMatch(_i1.RouteMatch match) : super.fromMatch(match);
+  AnimatedTransitionHomeRoute.fromMatch(_i1.RouteMatch match)
+      : super.fromMatch(match);
 
-  static const String name = 'FavoritesRoute';
+  static const String name = 'AnimatedTransitionHomeRoute';
+}
+
+class AnimatedTransitionDestinationRoute extends _i1.PageRouteInfo {
+  const AnimatedTransitionDestinationRoute()
+      : super(name, path: '/animated-transition-destination');
+
+  AnimatedTransitionDestinationRoute.fromMatch(_i1.RouteMatch match)
+      : super.fromMatch(match);
+
+  static const String name = 'AnimatedTransitionDestinationRoute';
 }

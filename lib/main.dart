@@ -2,6 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/AppState.dart';
@@ -42,9 +44,25 @@ class _PlaygroundState extends State<Playground> {
     colorScheme: ColorScheme.light(),
     primaryColor: Colors.white,
     accentColor: Colors.white,
+    // textButtonTheme: TextButtonThemeData(
+    //   style: TextButton.styleFrom(
+    //     primary: Colors.black,
+    //     backgroundColor: Colors.grey[200],
+    //   ),
+    // ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.grey[200],
       foregroundColor: Colors.black,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(
+          Colors.grey[200],
+        ),
+        foregroundColor: MaterialStateProperty.all<Color>(
+          Colors.black,
+        ),
+      ),
     ),
   );
 
@@ -53,10 +71,32 @@ class _PlaygroundState extends State<Playground> {
     // Use colorScheme instead of ThemeData...copyWith() to avoid
     //  resetting to default values.
     colorScheme: ColorScheme.dark(),
+    // textButtonTheme: TextButtonThemeData(
+    //   style: TextButton.styleFrom(
+    //     primary: Colors.grey[200],
+    //     backgroundColor: Colors.grey[800],
+    //   ),
+    // ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(
+          Colors.grey[800],
+        ),
+        foregroundColor: MaterialStateProperty.all<Color>(
+          Colors.white,
+        ),
+      ),
+    ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: Colors.grey[800],
       foregroundColor: Colors.white,
     ),
+    // elevatedButtonTheme: ElevatedButtonThemeData(
+    //   style: ButtonStyle(
+    //     backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
+    //     foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+    //   ),
+    // ),
   );
 
   @override
