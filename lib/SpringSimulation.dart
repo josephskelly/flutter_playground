@@ -22,14 +22,20 @@ class DraggableCard extends StatefulWidget {
   _DraggableCardState createState() => _DraggableCardState();
 }
 
-class _DraggableCardState extends State<DraggableCard> {
+class _DraggableCardState extends State<DraggableCard> with SingleTickerProviderStateMixin {
+  AnimationController _controller;
   @override
   void initState() {
+    AnimationController(
+        vsync: this,
+        duration: Duration(seconds: 1),
+    );
     super.initState();
   }
 
   @override
   void dispose() {
+    _controller.dispose();
     super.dispose();
   }
   @override
