@@ -11,8 +11,9 @@ import 'Counter.dart' as _i4;
 import 'SignIn.dart' as _i5;
 import 'animated_transition/animated_transition_home.dart' as _i6;
 import 'animated_transition/animated_transition_destination.dart' as _i7;
-import 'package:flutter/material.dart' as _i8;
-import 'Project.dart' as _i9;
+import 'SpringSimulation.dart' as _i8;
+import 'package:flutter/material.dart' as _i9;
+import 'Project.dart' as _i10;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter();
@@ -45,6 +46,9 @@ class AppRouter extends _i1.RootStackRouter {
           entry: entry,
           child: _i7.AnimatedTransitionDestination(),
           transitionsBuilder: _i1.TransitionsBuilders.fadeIn);
+    },
+    SpringSimulationRoute.name: (entry) {
+      return _i1.AdaptivePage(entry: entry, child: _i8.SpringSimulation());
     }
   };
 
@@ -74,19 +78,22 @@ class AppRouter extends _i1.RootStackRouter {
             AnimatedTransitionDestinationRoute.name,
             path: '/animated-transition-destination',
             routeBuilder: (match) =>
-                AnimatedTransitionDestinationRoute.fromMatch(match))
+                AnimatedTransitionDestinationRoute.fromMatch(match)),
+        _i1.RouteConfig<SpringSimulationRoute>(SpringSimulationRoute.name,
+            path: '/spring-simulation',
+            routeBuilder: (match) => SpringSimulationRoute.fromMatch(match))
       ];
 }
 
 class ProjectListScreenRoute extends _i1.PageRouteInfo {
-  ProjectListScreenRoute({@_i8.required this.onTapped})
+  ProjectListScreenRoute({@_i9.required this.onTapped})
       : super(name, path: '/');
 
   ProjectListScreenRoute.fromMatch(_i1.RouteMatch match)
       : onTapped = null,
         super.fromMatch(match);
 
-  final void Function(_i9.Project) onTapped;
+  final void Function(_i10.Project) onTapped;
 
   static const String name = 'ProjectListScreenRoute';
 }
@@ -141,4 +148,13 @@ class AnimatedTransitionDestinationRoute extends _i1.PageRouteInfo {
       : super.fromMatch(match);
 
   static const String name = 'AnimatedTransitionDestinationRoute';
+}
+
+class SpringSimulationRoute extends _i1.PageRouteInfo {
+  const SpringSimulationRoute() : super(name, path: '/spring-simulation');
+
+  SpringSimulationRoute.fromMatch(_i1.RouteMatch match)
+      : super.fromMatch(match);
+
+  static const String name = 'SpringSimulationRoute';
 }
