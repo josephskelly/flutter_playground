@@ -5,6 +5,7 @@ import 'RandomWords.dart';
 import 'Counter.dart';
 import 'SignIn.dart';
 import 'Router.gr.dart';
+import 'SpringSimulation.dart';
 
 final List<Project> ProjectList = [
   Project(
@@ -43,4 +44,13 @@ final List<Project> ProjectList = [
     ),
     AnimatedTransitionHomeRoute(),
   ),
+  Project(
+    'Spring Simulation',
+    'A widget attached to a spring',
+    SpringSimulation(),
+    Flex(
+      direction: Axis.horizontal,
+    ),
+    SpringSimulationRoute(),
+  )
 ];
