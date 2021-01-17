@@ -9,11 +9,12 @@ import 'ProjectListScreen.dart' as _i2;
 import 'RandomWords.dart' as _i3;
 import 'Counter.dart' as _i4;
 import 'SignIn.dart' as _i5;
-import 'animated_transition/animated_transition_home.dart' as _i6;
-import 'animated_transition/animated_transition_destination.dart' as _i7;
-import 'SpringSimulation.dart' as _i8;
-import 'package:flutter/material.dart' as _i9;
-import 'Project.dart' as _i10;
+import 'WelcomePage.dart' as _i6;
+import 'animated_transition/animated_transition_home.dart' as _i7;
+import 'animated_transition/animated_transition_destination.dart' as _i8;
+import 'SpringSimulation.dart' as _i9;
+import 'package:flutter/material.dart' as _i10;
+import 'Project.dart' as _i11;
 
 class AppRouter extends _i1.RootStackRouter {
   AppRouter();
@@ -37,18 +38,21 @@ class AppRouter extends _i1.RootStackRouter {
     SignInRoute.name: (entry) {
       return _i1.AdaptivePage(entry: entry, child: _i5.SignIn());
     },
+    WelcomePageRoute.name: (entry) {
+      return _i1.AdaptivePage(entry: entry, child: _i6.WelcomePage());
+    },
     AnimatedTransitionHomeRoute.name: (entry) {
       return _i1.AdaptivePage(
-          entry: entry, child: _i6.AnimatedTransitionHome());
+          entry: entry, child: _i7.AnimatedTransitionHome());
     },
     AnimatedTransitionDestinationRoute.name: (entry) {
       return _i1.CustomPage(
           entry: entry,
-          child: _i7.AnimatedTransitionDestination(),
+          child: _i8.AnimatedTransitionDestination(),
           transitionsBuilder: _i1.TransitionsBuilders.fadeIn);
     },
     SpringSimulationRoute.name: (entry) {
-      return _i1.AdaptivePage(entry: entry, child: _i8.SpringSimulation());
+      return _i1.AdaptivePage(entry: entry, child: _i9.SpringSimulation());
     }
   };
 
@@ -69,6 +73,9 @@ class AppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig<SignInRoute>(SignInRoute.name,
             path: '/sign-in',
             routeBuilder: (match) => SignInRoute.fromMatch(match)),
+        _i1.RouteConfig<WelcomePageRoute>(WelcomePageRoute.name,
+            path: '/signin/welcome',
+            routeBuilder: (match) => WelcomePageRoute.fromMatch(match)),
         _i1.RouteConfig<AnimatedTransitionHomeRoute>(
             AnimatedTransitionHomeRoute.name,
             path: '/animated-transition-home',
@@ -86,14 +93,14 @@ class AppRouter extends _i1.RootStackRouter {
 }
 
 class ProjectListScreenRoute extends _i1.PageRouteInfo {
-  ProjectListScreenRoute({@_i9.required this.onTapped})
+  ProjectListScreenRoute({@_i10.required this.onTapped})
       : super(name, path: '/');
 
   ProjectListScreenRoute.fromMatch(_i1.RouteMatch match)
       : onTapped = null,
         super.fromMatch(match);
 
-  final void Function(_i10.Project) onTapped;
+  final void Function(_i11.Project) onTapped;
 
   static const String name = 'ProjectListScreenRoute';
 }
@@ -128,6 +135,14 @@ class SignInRoute extends _i1.PageRouteInfo {
   SignInRoute.fromMatch(_i1.RouteMatch match) : super.fromMatch(match);
 
   static const String name = 'SignInRoute';
+}
+
+class WelcomePageRoute extends _i1.PageRouteInfo {
+  const WelcomePageRoute() : super(name, path: '/signin/welcome');
+
+  WelcomePageRoute.fromMatch(_i1.RouteMatch match) : super.fromMatch(match);
+
+  static const String name = 'WelcomePageRoute';
 }
 
 class AnimatedTransitionHomeRoute extends _i1.PageRouteInfo {

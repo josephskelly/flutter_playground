@@ -9,6 +9,7 @@ import 'RandomWords.dart';
 import 'SignIn.dart';
 import 'animated_transition/animated_transition_home.dart';
 import 'animated_transition/animated_transition_destination.dart';
+import 'WelcomePage.dart';
 
 // to rebuild Router.gr:
 // flutter packages pub run build_runner watch
@@ -27,6 +28,7 @@ import 'animated_transition/animated_transition_destination.dart';
     AutoRoute(page: Counter),
     // Sign In Page
     AutoRoute(page: SignIn),
+    AutoRoute(path: '/sign-in/welcome', page: WelcomePage),
     // Animated Transition
     AutoRoute(page: AnimatedTransitionHome),
     CustomRoute<bool>(

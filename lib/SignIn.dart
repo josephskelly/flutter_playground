@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_playground/Router.gr.dart';
 
 // TODO: Add welcome page.
 
@@ -89,7 +91,7 @@ class _SignUpFormState extends State<SignUpForm> {
                       : Colors.blue;
                 }),
               ),
-              onPressed: null,
+              onPressed: () => context.router.push(WelcomePageRoute()),
               child: Text('Sign Up'),
             ),
           ],
