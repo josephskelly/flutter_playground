@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/main.dart';
+import 'package:flutter_playground/Project.dart';
+import 'ProjectList.dart';
+import 'package:auto_route/auto_route.dart';
 
-class HomePage extends StatelessWidget {
-  final List<Project> projects;
+class ProjectListScreen extends StatelessWidget {
   final ValueChanged<Project> onTapped;
+  final List<Project> projects = ProjectList;
 
-  HomePage({
-    @required this.projects,
+  ProjectListScreen({
     @required this.onTapped,
   });
 
@@ -22,7 +23,7 @@ class HomePage extends StatelessWidget {
             ListTile(
               title: Text(project.title),
               subtitle: Text(project.description),
-              onTap: () => onTapped(project),
+              onTap: () => context.router.push(project.route),
             ),
         ],
       ),

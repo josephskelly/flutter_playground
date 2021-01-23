@@ -2,139 +2,112 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/HomePage.dart';
+import 'package:flutter_playground/AppState.dart';
+import 'package:flutter_playground/Router.gr.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(Playground());
+// TODO: Add persistent data storage
 
-class Project {
-  final String title;
-  final String description;
+void main() => runApp(
+      MultiProvider(
+        // MARK: Providers
+        providers: [
+          // Use ChangeNotifierProvider to update UI.
+          // Use Provider to update model only.
+          ChangeNotifierProvider(
+            // TODO: Separate AppState into specialized providers.
+            create: (context) => AppState(),
+          ),
+        ],
+        child: Playground(),
+      ),
+    );
 
-  Project(this.title, this.description);
-}
-
+// TODO: Confirm if StatefulWidget is still necessary after using provider.
 class Playground extends StatefulWidget {
   @override
   _PlaygroundState createState() => _PlaygroundState();
 }
 
 class _PlaygroundState extends State<Playground> {
-  void initState() {
-    super.initState();
-  }
+  // MARK: Router
+  final _appRouter = AppRouter();
 
-  Project _selectedProject;
-  bool show404 = false;
-  List<Project> projects = [
-    Project('Startup Name Generator',
-        'Creates random names by combining random words'),
-    Project('Counter', 'Keeps track of how many times a button was pressed'),
-  ];
+  // MARK: Light Theme
+  final ThemeData light = ThemeData(
+    // Use colorScheme instead of ThemeData...copyWith() to avoid
+    //  resetting to default values.
+    colorScheme: ColorScheme.light(),
+    primaryColor: Colors.white,
+    accentColor: Colors.white,
+    // textButtonTheme: TextButtonThemeData(
+    //   style: TextButton.styleFrom(
+    //     primary: Colors.black,
+    //     backgroundColor: Colors.grey[200],
+    //   ),
+    // ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Colors.grey[200],
+      foregroundColor: Colors.black,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(
+          Colors.grey[200],
+        ),
+        foregroundColor: MaterialStateProperty.all<Color>(
+          Colors.black,
+        ),
+      ),
+    ),
+  );
+
+  // MARK: Dark Theme
+  final ThemeData dark = ThemeData(
+    // Use colorScheme instead of ThemeData...copyWith() to avoid
+    //  resetting to default values.
+    colorScheme: ColorScheme.dark(),
+    // textButtonTheme: TextButtonThemeData(
+    //   style: TextButton.styleFrom(
+    //     primary: Colors.grey[200],
+    //     backgroundColor: Colors.grey[800],
+    //   ),
+    // ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(
+          Colors.grey[800],
+        ),
+        foregroundColor: MaterialStateProperty.all<Color>(
+          Colors.white,
+        ),
+      ),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: Colors.grey[800],
+      foregroundColor: Colors.white,
+    ),
+    // elevatedButtonTheme: ElevatedButtonThemeData(
+    //   style: ButtonStyle(
+    //     backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[200]),
+    //     foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+    //   ),
+    // ),
+  );
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Playground',
-      theme: ThemeData(
-        primaryColor: Colors.white,
-      ),
-      home: Navigator(
-        pages: [
-          MaterialPage(
-            key: ValueKey('HomePage'),
-            child: HomePage(
-              projects: projects,
-              onTapped: _handleProjectTapped,
-            ),
-          ),
-          if (show404)
-            MaterialPage(
-              key: ValueKey('UnknownPage'),
-              child: UnknownScreen(),
-            )
-          else if (_selectedProject != null)
-            MaterialPage(
-              key: ValueKey(_selectedProject),
-              child: ProjectDetailsScreen(project: _selectedProject),
-            )
-        ],
-        onPopPage: (route, result) {
-          if (!route.didPop(result)) {
-            return false;
-          }
-
-          // Update the list of pages by setting _selectedBook to null
-          setState(() {
-            _selectedProject = null;
-          });
-
-          return true;
-        },
-      ),
-    );
-  }
-
-  void _handleProjectTapped(Project project) {
-    setState(() {
-      _selectedProject = project;
-    });
-  }
-}
-
-class UnknownScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Unknown Project'),
-      ),
-      body: Text('An error occurred.'),
+      theme: light,
+      darkTheme: dark,
+      title: 'Flutter Playground',
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
     );
   }
 }
-
-class ProjectDetailsScreen extends StatelessWidget {
-  final Project project;
-  ProjectDetailsScreen({
-    @required this.project,
-  });
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(project.title),
-      ),
-      body: Text(project.description),
-    );
-  }
-}
-
-// ///Generates random names by compounding two words.
-// class RandomWordsApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Startup Name Generator',
-//       theme: ThemeData(
-//         primaryColor: Colors.white,
-//       ),
-//       home: HomePage(),
-//     );
-//   }
-// }
-//
-// ///A simple button that keeps track of how many times it has been pressed.
-// class CounterApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return CupertinoApp(
-//       title: 'Cupertino Counter',
-//       home: Counter(),
-//     );
-//   }
-// }
-//
