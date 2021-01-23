@@ -1,31 +1,53 @@
+//noinspection GrUnresolvedAccess
 buildscript {
+    //noinspection GrUnresolvedAccess
     ext.kotlin_version = '1.3.50'
+    //noinspection GrUnresolvedAccess
     repositories {
+        //noinspection GrUnresolvedAccess
         google()
+        //noinspection GrUnresolvedAccess
         jcenter()
     }
 
+    //noinspection GrUnresolvedAccess
     dependencies {
+        //noinspection GrUnresolvedAccess
         classpath 'com.android.tools.build:gradle:4.1.2'
+        //noinspection GrUnresolvedAccess,GrUnresolvedAccess
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
+//noinspection GrUnresolvedAccess
 allprojects {
+    //noinspection GrUnresolvedAccess
     repositories {
+        //noinspection GrUnresolvedAccess
         google()
+        //noinspection GrUnresolvedAccess
         jcenter()
     }
 }
 
+//noinspection GrUnresolvedAccess
 rootProject.buildDir = '../build'
+//noinspection GrUnresolvedAccess
 subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
+    //noinspection GrUnresolvedAccess
+    project.buildDir = "${//noinspection GrUnresolvedAccess
+        rootProject.buildDir}/${//noinspection GrUnresolvedAccess
+        project.name}"
 }
+//noinspection GrUnresolvedAccess
 subprojects {
+    //noinspection GrUnresolvedAccess
     project.evaluationDependsOn(':app')
 }
 
+//noinspection GrUnresolvedAccess,GrUnresolvedAccess
 task clean(type: Delete) {
+    //noinspection GrUnresolvedAccess
+    //noinspection GrUnresolvedAccess
     delete rootProject.buildDir
 }

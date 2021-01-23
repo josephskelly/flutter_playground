@@ -74,7 +74,7 @@ class AppRouter extends _i1.RootStackRouter {
             path: '/sign-in',
             routeBuilder: (match) => SignInRoute.fromMatch(match)),
         _i1.RouteConfig<WelcomePageRoute>(WelcomePageRoute.name,
-            path: '/signin/welcome',
+            path: '/sign-in/welcome',
             routeBuilder: (match) => WelcomePageRoute.fromMatch(match)),
         _i1.RouteConfig<AnimatedTransitionHomeRoute>(
             AnimatedTransitionHomeRoute.name,
@@ -138,7 +138,7 @@ class SignInRoute extends _i1.PageRouteInfo {
 }
 
 class WelcomePageRoute extends _i1.PageRouteInfo {
-  const WelcomePageRoute() : super(name, path: '/signin/welcome');
+  const WelcomePageRoute() : super(name, path: '/sign-in/welcome');
 
   WelcomePageRoute.fromMatch(_i1.RouteMatch match) : super.fromMatch(match);
 

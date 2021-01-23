@@ -1,13 +1,16 @@
 def localProperties = new Properties()
+//noinspection GrUnresolvedAccess
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
+        //noinspection GroovyAssignabilityCheck
         localProperties.load(reader)
     }
 }
 
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
+    //noinspection GrUnresolvedAccess
     throw GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
 }
 
@@ -21,39 +24,61 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+//noinspection GrUnresolvedAccess
 apply plugin: 'com.android.application'
+//noinspection GrUnresolvedAccess
 apply plugin: 'kotlin-android'
+//noinspection GrUnresolvedAccess
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
+//noinspection GrUnresolvedAccess
 android {
+    //noinspection GrUnresolvedAccess
     compileSdkVersion 30
 
+    //noinspection GrUnresolvedAccess
     sourceSets {
+        //noinspection GrUnresolvedAccess
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+    //noinspection GrUnresolvedAccess
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        //noinspection GrUnresolvedAccess
         applicationId "com.example.flutter_playground"
+        //noinspection GrUnresolvedAccess
         minSdkVersion 16
+        //noinspection GrUnresolvedAccess
         targetSdkVersion 30
+        //noinspection GrUnresolvedAccess,GrUnresolvedAccess
         versionCode flutterVersionCode.toInteger()
+        //noinspection GrUnresolvedAccess
         versionName flutterVersionName
     }
 
+    //noinspection GrUnresolvedAccess
     buildTypes {
+        //noinspection GrUnresolvedAccess
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
+            //noinspection GrUnresolvedAccess
+            //noinspection GrUnresolvedAccess
             signingConfig signingConfigs.debug
         }
     }
 }
 
+//noinspection GrUnresolvedAccess
 flutter {
+    //noinspection GrUnresolvedAccess
     source '../..'
 }
 
+//noinspection GrUnresolvedAccess
 dependencies {
+    //noinspection GrUnresolvedAccess
+    //noinspection GrUnresolvedAccess
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
