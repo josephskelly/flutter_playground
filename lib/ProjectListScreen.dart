@@ -15,7 +15,7 @@ class ProjectListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Playground'),
+        title: Text("Joe's Portfolio"),
       ),
       body: ListView(
         children: [
