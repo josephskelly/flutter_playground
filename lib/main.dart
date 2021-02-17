@@ -11,6 +11,7 @@ import 'package:flutter_playground/Router.gr.dart';
 import 'package:provider/provider.dart';
 
 // TODO: Add persistent data storage
+// TODO: Make sure this git thing is working properly
 
 void main() => runApp(
       MultiProvider(
