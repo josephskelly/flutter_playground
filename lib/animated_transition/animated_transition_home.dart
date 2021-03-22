@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_playground/Router.gr.dart';
-import 'package:flutter_playground/animated_transition/animated_transition_destination.dart';
 
 class AnimatedTransitionHome extends StatelessWidget {
   @override
