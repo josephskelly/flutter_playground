@@ -25,6 +25,7 @@ dependencies:
   provider: ^4.3.2+3
   english_words: ^3.1.5
   integration_test: ^1.0.1
+  rive: ^0.6.8
 
   flutter:
     sdk: flutter
