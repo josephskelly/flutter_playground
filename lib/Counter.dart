@@ -43,11 +43,11 @@ class _CounterState extends State<Counter> {
         child: Column(
           children: [
             Text('Count: $_counter'),
-            Container(
-              child: MyRiveAnimation(),
-              height: 200,
-              width: 200,
-            ),
+            // Container(
+            //   child: MyRiveAnimation(),
+            //   height: 200,
+            //   width: 200,
+            // ),
           ],
         ),
         heightFactor: 37,
@@ -56,43 +56,43 @@ class _CounterState extends State<Counter> {
   }
 }
 
-class MyRiveAnimation extends StatefulWidget {
-  @override
-  _MyRiveAnimationState createState() => _MyRiveAnimationState();
-}
+// class MyRiveAnimation extends StatefulWidget {
+//   @override
+//   _MyRiveAnimationState createState() => _MyRiveAnimationState();
+// }
+//
+// class _MyRiveAnimationState extends State<MyRiveAnimation> {
+//   final riveFileName = 'assets/crap_animation.riv';
+//   Artboard _artboard;
+//
+//   @override
+//   void initState() {
+//     _loadRiveFile();
+//     super.initState();
+//   }
 
-class _MyRiveAnimationState extends State<MyRiveAnimation> {
-  final riveFileName = 'assets/crap_animation.riv';
-  Artboard _artboard;
-
-  @override
-  void initState() {
-    _loadRiveFile();
-    super.initState();
-  }
-
-  void _loadRiveFile() async {
-    final bytes = await rootBundle.load(riveFileName);
-    final file = RiveFile();
-
-    if (file.import(bytes)) {
-      // Select an animation by its name
-      setState(() => _artboard = file.mainArtboard
-        ..addController(
-          SimpleAnimation('Animation 1'),
-        )
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return _artboard != null
-      ? Rive(
-          artboard: _artboard,
-          fit: BoxFit.cover,
-        )
-      : Container();
-  }
-}
+  // void _loadRiveFile() async {
+  //   final bytes = await rootBundle.load(riveFileName);
+  //   final file = RiveFile();
+  //
+  //   if (file.import(bytes)) {
+  //     // Select an animation by its name
+  //     setState(() => _artboard = file.mainArtboard
+  //       ..addController(
+  //         SimpleAnimation('Animation 1'),
+  //       )
+  //     );
+  //   }
+  // }
+  //
+  // @override
+  // Widget build(BuildContext context) {
+  //   return _artboard != null
+  //     ? Rive(
+  //         artboard: _artboard,
+  //         fit: BoxFit.cover,
+  //       )
+  //     : Container();
+  // }
+// }
 

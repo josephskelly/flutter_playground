@@ -21,11 +21,11 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  auto_route: ^1.0.0-beta.6
-  provider: ^4.3.2+3
-  english_words: ^3.1.5
-  integration_test: ^1.0.1
-  rive: ^0.6.8
+  auto_route: ^1.0.2
+  provider: ^5.0.0
+  english_words: ^4.0.0
+  integration_test: ^1.0.2+3
+  rive: ^0.7.2
 
   flutter:
     sdk: flutter
@@ -37,8 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.0
 
 dev_dependencies:
-  auto_route_generator: ^1.0.0-beta.6
-  build_runner:
+  auto_route_generator: ^1.0.2
+  build_runner: ^1.12.2
   flutter_test:
     sdk: flutter
   flutter_driver:
